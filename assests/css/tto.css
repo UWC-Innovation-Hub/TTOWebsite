@@ -1,3 +1,17 @@
+:root {
+    --blue-color:#0a1a5c;
+    --white-color:#FFFFFF;
+    --gold-color:#bd9a50;
+    --black-color:#0000;
+    --midBlue-color:#385ba3;
+    --yellow-color:#ffc542;
+    --midGrey-color:#3c3c3e;
+    --lightGrey-color:#d1d1d1;
+    --cream-color:#faf6ed;
+    --font-family:'Open Sans',sans-serif;
+    --header-height:96px; /* set to approximate fixed header height */
+}
+
 p,ul {
     margin-top:0;
     margin-bottom:1rem
@@ -28,25 +42,17 @@ p,ul {
     text-overflow:ellipsis;
     -webkit-box-orient:vertical
 }
-:root {
-    --blue-color:#0a1a5c;
-    --white-color:#FFFFFF;
-    --gold-color:#bd9a50;
-    --black-color:#0000;
-    --midBlue-color:#385ba3;
-    --yellow-color:#ffc542;
-    --midGrey-color:#3c3c3e;
-    --lightGrey-color:#d1d1d1;
-    --cream-color:#faf6ed;
-    --font-family:'Open Sans',sans-serif
-}
+
 body {
     color:var(--black-color);
     background-color:var(--white-color);
     margin:0;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     text-align:left;
-    background-color:#fff
+    background-color:#fff;
+    padding-top:var(--header-height);
+    min-height: 100vh;            /* ensure full viewport height */
+    padding-top: var(--header-height); /* keep space for fixed header */
 }
 .btn,a {
     background-color:transparent
@@ -427,7 +433,8 @@ img {
         padding-right:15px
     }
     body {
-        overflow-x:hidden
+        overflow-x:hidden;
+        padding-top:140px;
     }
 }
 .burger-menu,.close-menu,.mobile-nav {
@@ -519,6 +526,10 @@ html {
     -webkit-text-size-adjust:100%;
     -webkit-tap-highlight-color:transparent
 }
+html, body {
+    height: 100%;
+}
+
 ::-webkit-file-upload-button {
     font:inherit;
     -webkit-appearance:button
@@ -867,11 +878,74 @@ a:hover {
 .text-right {
     text-align:right!important
 }
-footer {
-    background-color:var(--blue-color);
-    padding-top:40px;
-    padding-bottom:40px
+/* Page layout so footer stays at bottom */
+html, body { height: 100%; }
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* keep existing header space if you use a fixed header */
+  padding-top: var(--header-height, 96px);
 }
+main, .site-content, .page-wrapper { flex: 1 0 auto; }
+footer { flex-shrink: 0; }
+
+/* Footer visual style (overrides Bootstrap .bg-dark .text-light) */
+footer.bg-dark.text-light {
+  background: #072157 !important;           /* deep navy */
+  color: #ffffff !important;
+  padding: 48px 0;
+  border-top: 4px solid rgba(189,154,80,0.06); /* subtle gold accent */
+}
+
+/* container width */
+footer .container { max-width: 1140px; }
+
+/* column / heading styles */
+footer .row.gy-4 { align-items: flex-start; }
+footer h4, footer h6 {
+  color: #d6c089;               /* gold-ish heading */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+/* links and lists */
+footer a { color: rgba(255,255,255,0.92); text-decoration: none; }
+footer a:hover { color: #ffffff; text-decoration: underline; }
+footer ul.list-unstyled li { margin: 10px 0; font-weight: 600; }
+
+/* contact / small text */
+footer .col-md-4 ul.small li { color: rgba(255,255,255,0.85); font-weight: 400; }
+
+/* bottom divider and copyright */
+footer hr { border-color: rgba(255,255,255,0.06); margin-top: 1.25rem; margin-bottom: 1.25rem; }
+footer .text-center small { color: rgba(255,255,255,0.6); display:block; margin-top: 8px; }
+
+/* Footer social icons (optional markup shown below) */
+.footer-social { display: flex; gap: 12px; justify-content: flex-end; align-items: center; }
+.footer-social a{
+  width:44px; height:44px; display:inline-grid; place-items:center;
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:50%;
+  color:#fff; text-decoration:none;
+  transition: all .18s ease;
+}
+.footer-social a:hover{
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.22);
+}
+
+/* small-screen adjustments */
+@media (max-width: 767px) {
+  footer .row.gy-4 { text-align: center; }
+  .footer-social { justify-content: center; margin-top: 12px; }
+  footer .col-md-4 { margin-bottom: 1rem; }
+}
+
 .f-logo img {
     width:133px
 }
@@ -932,7 +1006,8 @@ a.footer-social img {
         margin-top:0
     }
     footer {
-        padding:30px 0 20px
+        padding:30px 0 20px;
+        flex-shrink: 0;
     }
     .termsnav-item:not(:last-child) {
         margin:0
@@ -1007,3 +1082,172 @@ a.footer-social img {
     .team-email a:hover {
       text-decoration: underline;
     }
+
+    /* === Header / Nav styles moved from inline to CSS for cleanliness === */
+
+    header {
+    min-height:86px;
+    z-index:1000;
+    position:fixed;
+    width:100%;
+    top:0;
+    padding:10px 24px;
+    background:#fff; /* keep header opaque so content beneath doesn't show through */
+    border-bottom:1px solid rgba(0,0,0,0.04);
+    }
+
+    .header-nav {
+        background: #fff;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .header-container{
+    max-width:1140px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between; /* logo left, everything else to the right */
+    gap:10px;
+    width:100%;
+    }
+    .header-logos{
+    display:flex;
+    align-items:left;
+    gap:12px;
+    }
+    .header-logos img {
+        display: block;
+    }
+    .header-center{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end; /* push nav items to the far right side of this area */
+    flex:1 1 60%; /* let this area take available space so nav can distribute evenly */
+    max-width:800px; /* controls how far apart nav items spread */
+    box-sizing:border-box;
+    } 
+    .header-nav-list{
+    list-style:none;
+    display:flex;
+    align-items:center;
+    justify-content:space-between; /* distribute items across the container */
+    gap:32px; /* visual spacing between items */
+    margin:0;
+    padding:0;
+    width:100%; /* important so space-between works across the max-width */
+   }
+   .header-nav-list li{
+    flex:0 0 auto;
+   } 
+    .header-nav-list li a {
+        color: var(--blue-color);
+        font-weight: 800;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 15px;
+        letter-spacing: 0.4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .header-nav-list li a:hover {
+        color: var(--blue-color);
+    }
+    .nav-chevron {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        background-image: url('/assests/img/icons/chevron-down-solid-full.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    .header-spacer {
+        width: 120px;
+    }
+    .header-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-left:12px;
+   }
+
+    /* Responsive: stack nav on narrow screens */
+    @media (max-width:767px){
+    .header-container{
+        padding:10px 12px;
+        flex-direction:column;
+        align-items:stretch;
+    }
+    .header-logos{ justify-content:center; margin-bottom:8px; }
+    .header-center{
+        width:100%;
+        max-width:none;
+        justify-content:center;
+    }
+    .header-nav-list{
+        justify-content:center;
+        flex-wrap:wrap;
+        gap:16px;
+        width:auto;
+    }
+    .header-actions{ justify-content:center; margin-left:0; margin-top:8px; }
+    }
+
+    /* Header dropdown styles */
+.header-center .header-nav-list { display:flex; gap:32px; align-items:center; list-style:none; margin:0; padding:0; }
+.header-center .header-nav-list .nav-item { position:relative; }
+.header-center .header-nav-list .nav-link { display:inline-flex; align-items:center; gap:6px; text-decoration:none; text-transform:uppercase; font-weight:700; color:var(--blue-color,#0b2b66); }
+.header-center .nav-chevron { display:inline-block; width:12px; height:12px; background-repeat:no-repeat; background-size:contain; background-image: url('/assests/img/logos/chevron-gold.svg'); transition: transform .18s ease; }
+/* dropdown menu */
+.header-center .dropdown-menu {
+  position:absolute;
+  top:100%;
+  left:0;
+  min-width:200px;
+  background:#fff;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  border-radius:4px;
+  margin-top:8px;
+  padding:8px 0;
+  z-index:60;
+  display:block; /* we'll hide via [hidden] attribute */
+}
+.header-center .dropdown-menu[hidden] { display:none; }
+.header-center .dropdown-menu li { list-style:none; }
+.header-center .dropdown-menu li a { display:block; padding:8px 16px; color:#0b2b66; text-decoration:none; white-space:nowrap; }
+.header-center .dropdown-menu li a:hover { background:#f6f6f6; }
+/* open state */
+.header-center .nav-item.open > .nav-link .nav-chevron { transform: rotate(180deg); }
+.header-center .nav-item.open > .dropdown-menu { display:block; }
+/* basic responsive: stack on small screens */
+@media (max-width:767px) {
+  .header-center .header-nav-list { flex-direction:column; gap:0; }
+  .header-center .dropdown-menu { position:static; box-shadow:none; margin-top:0; padding-left:12px; }
+}
+
+main, .site-content, .page-wrapper {
+    flex: 1 0 auto;
+}
+
+.breadcrumb-wrapper {
+  background: #0b2b66;      /* dark blue bar */
+  color: #fff;
+  padding: 0.5rem 0;
+  border-top: 4px solid #bd9a50; /* optional gold accent */
+}
+.breadcrumb-wrapper .breadcrumb {
+  background: transparent;
+  margin-bottom: 0;
+}
+.breadcrumb-wrapper .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  color: rgba(255,255,255,0.5);
+}
+.breadcrumb-wrapper .breadcrumb a {
+  color: rgba(255,255,255,0.95);
+  text-decoration: none;
+}
+.breadcrumb-wrapper .breadcrumb .active {
+  color: #fff;
+  font-weight: 600;
+}
+/* ensure breadcrumb text sits vertically centered if needed */
+.breadcrumb-wrapper .container { display: flex; align-items: center; }

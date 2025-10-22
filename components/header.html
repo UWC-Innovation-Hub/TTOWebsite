@@ -1,68 +1,113 @@
 <!-- header.html -->
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <div class="d-flex align-items-left">
-        <!-- Logo / Brand -->
+  <nav class="header-nav">
+    <div class="container header-container">
+      <!-- Logos (left) -->
+      <div class="header-logos">
         <a class="navbar-brand" href="https://www.uwc.ac.za/">
-          <img src="/assests/img/logos/UWC_logo_stacked-03.svg" alt="UWC TTO Logo" height="40" class="d-inline-block align-text-top">
+          <img src="/assests/img/logos/UWC_logo_stacked-03.svg" alt="UWC TTO Logo" height="40">
         </a>
         <a class="navbar-brand" href="/index.html">
-          <img src="/assests/img/logos/UWC_TTO_WEB.png" alt="UWC TTO Logo" height="40" class="d-inline-block align-text-top">
+          <img src="/assests/img/logos/UWC_TTO_WEB.png" alt="UWC TTO Logo" height="40">
         </a>
       </div>
-      
-      <!-- Navigation links -->
-      <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/index.html">Home</a>
+
+      <!-- Centered nav -->
+      <div class="header-center">
+        <ul class="header-nav-list">
+          <li>
+            <a class="nav-link" href="/index.html">Home <span class="nav-chevron" aria-hidden="true"></span></a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" 
-              href="#" 
-              id="externalDropdown" 
-              role="button" 
-              data-bs-toggle="dropdown" 
-              aria-expanded="false">
-              About
+          <li class="nav-item has-dropdown">
+            <a class="nav-link" href="/about/about.html" aria-haspopup="true" aria-expanded="false">
+              About <span class="nav-chevron" aria-hidden="true"></span>
             </a>
-            <ul class="dropdown-menu" aria-labelledby="externalDropdown">
-              <li><a class="dropdown-item" href="/about/about.html">Innovation and Technology</a></li>
-              <li><a class="dropdown-item" href="/about/team.html">Our Team</a></li>
+            <ul class="dropdown-menu" hidden>
+              <li><a href="/about/about.html">Innovation And Technology</a></li>
+              <li><a href="/about/team.html">Team</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/news.html">News & Events</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/for-innovators/index.html">For Innovators</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" 
-              href="#" 
-              id="externalDropdown" 
-              role="button" 
-              data-bs-toggle="dropdown" 
-              aria-expanded="false">
-              For External Stakeholders
+
+          <li class="nav-item has-dropdown">
+            <a class="nav-link" href="/about/about.html" aria-haspopup="true" aria-expanded="false">
+              For Innovators <span class="nav-chevron" aria-hidden="true"></span>
             </a>
-            <ul class="dropdown-menu" aria-labelledby="externalDropdown">
-              <li><a class="dropdown-item" href="/about/about.html">Innovation and Technology</a></li>
-              <li><a class="dropdown-item" href="/for-stakeholders/uwc-tech.html">UWC Technologies</a></li>
+            <ul class="dropdown-menu" hidden>
+              <li><a href="/about/about.html">Innovation And Technology</a></li>
+              <li><a href="/for-innovators/protecting-ip.html">Protecting UWC’s Intellectual Property</a></li>
+               <li><a href="/for-innovators/uwc-ip-policy.html">UWC IP Policy</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/about/documents.html">Documents & Policies</a>
-          </li>      
-          <li class="nav-item">
-            <a class="nav-link" href="/about/contact-us.html">Contact Us</a>
+
+          <li class="nav-item has-dropdown">
+            <a class="nav-link" href="/about/about.html" aria-haspopup="true" aria-expanded="false">
+              For Stakeholders <span class="nav-chevron" aria-hidden="true"></span>
+            </a>
+            <ul class="dropdown-menu" hidden>
+              <li><a href="/about/about.html">Innovation And Technology</a></li>
+              <li><a href="/for-stakeholders/uwc-tech.html">UWC Technologies</a></li>
+            </ul>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/news.html">News &amp; Events <span class="nav-chevron" aria-hidden="true"></span></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/about/documents.html">Documents &amp; Policies<span class="nav-chevron" aria-hidden="true"></span></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/about/contact-us.html">Contact Us<span class="nav-chevron" aria-hidden="true"></span></a>
+          </li>
+
         </ul>
       </div>
+
+      <!-- right spacer to balance logos (keeps center nav visually centered) -->
+      <div class="header-spacer" aria-hidden="true"></div>
     </div>
   </nav>
-
 </header>
 
-<script src="../assests/js/dropdown.js"></script>
+<!-- Ensure tto.css is loaded when header is injected -->
+<script>
+  (function() {
+    try {
+      var href = '/assests/css/tto.css';
+      // Don't add duplicate links
+      if (!document.querySelector('link[href="' + href + '"]')) {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.appendChild(link);
+      }
+
+      // Ensure Bootstrap CSS is added to head (centralized)
+      var bsCss = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
+      if (!document.querySelector('link[href="' + bsCss + '"]')) {
+        var bsLink = document.createElement('link');
+        bsLink.rel = 'stylesheet';
+        bsLink.href = bsCss;
+        document.head.appendChild(bsLink);
+      }
+    } catch (e) {
+      /* ignore */
+    }
+  })();
+</script>
+
+<script src="/assests/js/dropdown.js"></script>
+
+<!-- Ensure Bootstrap JS bundle is loaded once (appended to body) -->
+<script>
+  (function () {
+    var bsJs = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js';
+    if (!document.querySelector('script[src="' + bsJs + '"]')) {
+      var s = document.createElement('script');
+      s.src = bsJs;
+      s.defer = false;
+      document.body.appendChild(s);
+    }
+  })();
+</script>
