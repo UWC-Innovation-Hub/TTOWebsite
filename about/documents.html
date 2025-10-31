@@ -29,10 +29,24 @@
   <div id="header"></div>
   <div id="breadcrumb-placeholder"></div>
   
-    <div class="container my-5">
+      <div class="container my-5">
         <!-- Main Content -->
         <div class="row justify-content-center">
-            
+            <!-- Embed Google Apps Script web app -->
+            <div class="col-12">
+                <iframe
+                    src="https://script.google.com/macros/s/AKfycbyL3kQwZzEPqh1CpttvIqT9tQXTAC_qcHqd2yEdkdKc_hWiU1kr8kaWtgJXMI_hTlTu/exec"
+                    title="Document Library"
+                    style="width:100%;height:800px;border:0;"
+                    sandbox="allow-scripts allow-same-origin allow-forms"
+                    loading="lazy"
+                ></iframe>
+
+                <!-- Fallback -->
+                <p class="mt-2">
+                  If the viewer does not load, <a href="https://script.google.com/macros/s/AKfycbyL3kQwZzEPqh1CpttvIqT9tQXTAC_qcHqd2yEdkdKc_hWiU1kr8kaWtgJXMI_hTlTu/exec" target="_blank" rel="noopener">open the document library in a new tab</a>.
+                </p>
+            </div>
         </div>
     </div>
 
