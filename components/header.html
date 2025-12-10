@@ -68,21 +68,12 @@
 
 <script>
   (function() {
-    // Calculate base path based on current page location
-    function getBasePath() {
-      var path = window.location.pathname;
-      var depth = (path.match(/\//g) || []).length - 1;
-      if (depth <= 0) return './';
-      return '../'.repeat(depth);
-    }
-    var basePath = getBasePath();
-
-    // Ensure tto.css is loaded (check for both absolute and relative paths)
-    var ttoCssLoaded = document.querySelector('link[href*="assets/css/tto.css"]');
-    if (!ttoCssLoaded) {
+    // Ensure tto.css is loaded
+    var href = '/assets/css/tto.css';
+    if (!document.querySelector('link[href="' + href + '"]')) {
       var link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = basePath + 'assets/css/tto.css';
+      link.href = href;
       document.head.appendChild(link);
     }
 

@@ -1,27 +1,11 @@
 (function loadHeader() {
-  // Calculate base path based on current page location
-  function getBasePath() {
-    var path = window.location.pathname;
-    var depth = (path.match(/\//g) || []).length - 1;
-    if (depth <= 0) return './';
-    return '../'.repeat(depth);
-  }
-
-  // Transform paths in HTML content from absolute to relative
-  function transformPaths(html, basePath) {
-    return html
-      .replace(/src="\//g, 'src="' + basePath)
-      .replace(/href="\//g, 'href="' + basePath);
-  }
-
-  var basePath = getBasePath();
   var headerContainer = document.getElementById('header');
   if (!headerContainer) return;
 
-  fetch(basePath + 'components/header.html')
+  fetch('/components/header.html')
     .then(function (r) { return r.text(); })
     .then(function (html) {
-      headerContainer.innerHTML = transformPaths(html, basePath);
+      headerContainer.innerHTML = html;
     })
     .catch(function (err) {
       console.error('Header load failed', err);
