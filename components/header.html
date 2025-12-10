@@ -1,14 +1,13 @@
-<!-- header.html -->
 <header>
   <nav class="header-nav">
     <div class="container header-container">
       <!-- Logos (left) -->
       <div class="header-logos">
         <a class="navbar-brand" href="https://www.uwc.ac.za/">
-          <img src="/assests/img/logos/UWC_logo_stacked-03.svg" alt="UWC TTO Logo" height="40">
+          <img src="/assets/img/logos/UWC_logo_stacked-03.svg" alt="UWC Logo" height="40">
         </a>
         <a class="navbar-brand" href="/index.html">
-          <img src="/assests/img/logos/UWC_TTO_WEB.png" alt="UWC TTO Logo" height="40">
+          <img src="/assets/img/logos/UWC_TTO_WEB.png" alt="UWC TTO Logo" height="40">
         </a>
       </div>
 
@@ -16,7 +15,7 @@
       <div class="header-center">
         <ul class="header-nav-list">
           <li>
-            <a class="nav-link" href="/index.html">Home <span class="nav-chevron" aria-hidden="true"></span></a>
+            <a class="nav-link" href="/index.html">Home</a>
           </li>
           <li class="nav-item has-dropdown">
             <a class="nav-link" href="/about/about.html" aria-haspopup="true" aria-expanded="false">
@@ -29,84 +28,70 @@
           </li>
 
           <li class="nav-item has-dropdown">
-            <a class="nav-link" href="/about/about.html" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">
               For Innovators <span class="nav-chevron" aria-hidden="true"></span>
             </a>
             <ul class="dropdown-menu" hidden>
-              <li><a href="/about/about.html">Innovation And Technology</a></li>
-              <li><a href="/for-innovators/protecting-ip.html">Protecting UWC’s Intellectual Property</a></li>
-               <li><a href="/for-innovators/uwc-ip-policy.html">UWC IP Policy</a></li>
+              <li><a href="/for-innovators/protecting-ip.html">Protecting IP</a></li>
+              <li><a href="/for-innovators/uwc-ip-policy.html">UWC IP Policy</a></li>
+              <li><a href="/for-innovators/ip-form.html">IP Form</a></li>
             </ul>
           </li>
 
           <li class="nav-item has-dropdown">
-            <a class="nav-link" href="/about/about.html" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">
               For Stakeholders <span class="nav-chevron" aria-hidden="true"></span>
             </a>
             <ul class="dropdown-menu" hidden>
-              <li><a href="/about/about.html">Innovation And Technology</a></li>
               <li><a href="/for-stakeholders/uwc-tech.html">UWC Technologies</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/news.html">News &amp; Events <span class="nav-chevron" aria-hidden="true"></span></a>
+            <a class="nav-link" href="/news.html">News &amp; Events</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/about/documents.html">Documents &amp; Policies<span class="nav-chevron" aria-hidden="true"></span></a>
+            <a class="nav-link" href="/about/documents.html">Documents &amp; Policies</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/about/contact-us.html">Contact Us<span class="nav-chevron" aria-hidden="true"></span></a>
+            <a class="nav-link" href="/about/contact-us.html">Contact Us</a>
           </li>
-
         </ul>
       </div>
 
-      <!-- right spacer to balance logos (keeps center nav visually centered) -->
       <div class="header-spacer" aria-hidden="true"></div>
     </div>
   </nav>
 </header>
 
-<!-- Ensure tto.css is loaded when header is injected -->
 <script>
   (function() {
-    try {
-      var href = '/assests/css/tto.css';
-      // Don't add duplicate links
-      if (!document.querySelector('link[href="' + href + '"]')) {
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = href;
-        document.head.appendChild(link);
-      }
-
-      // Ensure Bootstrap CSS is added to head (centralized)
-      var bsCss = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
-      if (!document.querySelector('link[href="' + bsCss + '"]')) {
-        var bsLink = document.createElement('link');
-        bsLink.rel = 'stylesheet';
-        bsLink.href = bsCss;
-        document.head.appendChild(bsLink);
-      }
-    } catch (e) {
-      /* ignore */
+    // Ensure tto.css is loaded
+    var href = '/assets/css/tto.css';
+    if (!document.querySelector('link[href="' + href + '"]')) {
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = href;
+      document.head.appendChild(link);
     }
-  })();
-</script>
 
-<script src="/assests/js/dropdown.js"></script>
+    // Ensure Bootstrap CSS is loaded
+    var bsCss = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
+    if (!document.querySelector('link[href="' + bsCss + '"]')) {
+      var bsLink = document.createElement('link');
+      bsLink.rel = 'stylesheet';
+      bsLink.href = bsCss;
+      document.head.appendChild(bsLink);
+    }
 
-<!-- Ensure Bootstrap JS bundle is loaded once (appended to body) -->
-<script>
-  (function () {
+    // Ensure Bootstrap JS bundle is loaded
     var bsJs = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js';
     if (!document.querySelector('script[src="' + bsJs + '"]')) {
       var s = document.createElement('script');
       s.src = bsJs;
-      s.defer = false;
+      s.defer = true;
       document.body.appendChild(s);
     }
   })();
